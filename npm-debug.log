@@ -1,0 +1,66 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files (x86)\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'handlebars' ]
+2 info using npm@1.3.11
+3 info using node@v0.10.21
+4 verbose node symlink C:\Program Files (x86)\nodejs\\node.exe
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'handlebars', null ]
+7 verbose cache add name=undefined spec="handlebars" args=["handlebars",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'handlebars',
+8 verbose parsed url   path: 'handlebars',
+8 verbose parsed url   href: 'handlebars' }
+9 silly lockFile 9566e355-handlebars handlebars
+10 verbose lock handlebars C:\Users\Flavio\AppData\Roaming\npm-cache\9566e355-handlebars.lock
+11 silly lockFile 9566e355-handlebars handlebars
+12 silly lockFile 9566e355-handlebars handlebars
+13 verbose addNamed [ 'handlebars', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile 0ab5732f-handlebars handlebars@
+16 verbose lock handlebars@ C:\Users\Flavio\AppData\Roaming\npm-cache\0ab5732f-handlebars.lock
+17 silly addNameRange { name: 'handlebars', range: '*', hasData: false }
+18 verbose url raw handlebars
+19 verbose url resolving [ 'https://registry.npmjs.org/', './handlebars' ]
+20 verbose url resolved https://registry.npmjs.org/handlebars
+21 info trying registry request attempt 1 at 22:38:42
+22 http GET https://registry.npmjs.org/handlebars
+23 info retry will retry, error on last attempt: Error: connect ECONNREFUSED
+24 info trying registry request attempt 2 at 22:38:54
+25 http GET https://registry.npmjs.org/handlebars
+26 info retry will retry, error on last attempt: Error: connect ECONNREFUSED
+27 info trying registry request attempt 3 at 22:39:55
+28 http GET https://registry.npmjs.org/handlebars
+29 silly lockFile 0ab5732f-handlebars handlebars@
+30 silly lockFile 0ab5732f-handlebars handlebars@
+31 error Error: connect ECONNREFUSED
+31 error     at errnoException (net.js:901:11)
+31 error     at Object.afterConnect [as oncomplete] (net.js:892:19)
+31 error  { [Error: connect ECONNREFUSED]
+31 error   code: 'ECONNREFUSED',
+31 error   errno: 'ECONNREFUSED',
+31 error   syscall: 'connect' }
+32 error If you are behind a proxy, please make sure that the
+32 error 'proxy' config is set properly.  See: 'npm help config'
+33 error System Windows_NT 6.1.7601
+34 error command "C:\\Program Files (x86)\\nodejs\\\\node.exe" "C:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "handlebars"
+35 error cwd D:\Projetos\node-js-eclipse\AgruupNode
+36 error node -v v0.10.21
+37 error npm -v 1.3.11
+38 error syscall connect
+39 error code ECONNREFUSED
+40 error errno ECONNREFUSED
+41 error stack Error: connect ECONNREFUSED
+41 error stack     at errnoException (net.js:901:11)
+41 error stack     at Object.afterConnect [as oncomplete] (net.js:892:19)
+42 verbose exit [ 1, true ]
