@@ -1,5 +1,5 @@
 $(function() {
-	/*
+	
 	var collection = new ConcursoCollection();
 	collection.fetch({
 		success: function(data) {
@@ -7,5 +7,5 @@ $(function() {
 			$("body").append(view.render().el);
 		}
 	});
-		*/
+		
 });
