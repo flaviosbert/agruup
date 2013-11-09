@@ -7,6 +7,7 @@ block content
     = appData
   
   div.app
+  div.edicao
   
   script(id="concursoTemplate", type="text/x-handlebars")
     <a href=# class="nomeConcurso">{{nome}}</a>
@@ -16,9 +17,12 @@ block content
     <p>Mais info do concurso</p>    
     
   script(id="editarConcursoTemplate", type="text/x-handlebars")
-    input(type="text", name="nome", value="{{nome}}")
-    input(type="text", name="descricao", value="{{descricao}}")
-    input(type="text", name="salario", value="{{salario}}")
+    p Nome do concurso:
+      input(type="text", name="nome", value="{{nome}}")
+    p Descri&ccedil;&atilde;o:
+      input(type="text", name="descricao", value="{{descricao}}")
+    p Sal&aacute;rio:
+      input(type="text", name="salario", value="{{salario}}")
     <a href=# class="gravarConcurso">Gravar</a>
     
     
