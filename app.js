@@ -32,6 +32,7 @@ app.get('/users', user.list);
 app.get('/concursos', routes.concursos.all);
 app.get('/concursos/:id', routes.concursos.one);
 app.post('/concursos', routes.concursos.create);
+app.put('/concursos/:id', routes.concursos.change);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

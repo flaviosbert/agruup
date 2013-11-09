@@ -1,15 +1,11 @@
-
-/*
- * GET home page.
- */
+var db = require("../db.js");
 
 exports.index = function(req, res){
-  res.render('index', { title: "Express" });
+	db.concursos.find({}, function(err, obj) {
+		var data = JSON.stringify(obj); 		
+		res.render('index', { title: "Lista de Concursos", appData: data });
+	});	
 };
-
-
-
-var db = require("../db.js");
 
 exports.concursos = {};
 
@@ -38,4 +34,17 @@ exports.concursos.create = function(req, res) {
 		if (err) throw err;		
 	});
 	res.json(req.body);
+};
+
+exports.concursos.change = function(req, res) {
+	var id = db.ObjectId(req.params.id);
+	
+	var concurso = req.body;
+	delete concurso._id;
+	
+	db.concursos.update({"_id": id }, concurso, function(err, obj) {
+		if (err) throw err;
+		res.json(req.body);
+	});
+	
 };

@@ -1,8 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1= title  
+  
+  div#initialContent
+    = appData
+  
+  div.app
   
   script(id="concursoTemplate", type="text/x-handlebars")
-    {{nome}}
+    <a href=# class="nomeConcurso">{{nome}}</a>
+    
+  script(id="exibirConcursoTemplate", type="text/x-handlebars")    
+    <h2>Nome do Concurso: {{nome}}</h2>
+    <p>Mais info do concurso</p>    
+    
+  script(id="editarConcursoTemplate", type="text/x-handlebars")
+    input(type="text", name="nome", value="{{nome}}")
+    input(type="text", name="descricao", value="{{descricao}}")
+    input(type="text", name="salario", value="{{salario}}")
+    <a href=# class="gravarConcurso">Gravar</a>
+    
+    
+    
+  
