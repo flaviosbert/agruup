@@ -60,7 +60,7 @@ var EditarConcursoView = Backbone.View.extend({
 			
 		this.model.save(null, {
 			success: function(model){			
-				//router.collection.fetch();
+				router.collection.fetch();
 				window.router.navigate("", {trigger: true});
 			},
 			error: function(model, xhr, options){		
