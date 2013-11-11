@@ -10,7 +10,12 @@ block content
   div.edicao
   
   script(id="concursoTemplate", type="text/x-handlebars")
-    <a href=# class="nomeConcurso">{{nome}}</a>
+    <a href="#" class="nomeConcurso">{{nome}}</a>
+  
+  script(id="footerTemplate", type="text/x-handlebars")
+    p
+      <a href="#" class="addConcurso">Inserir Concurso</a>
+      
     
   script(id="exibirConcursoTemplate", type="text/x-handlebars")    
     <h2>Nome do Concurso: {{nome}}</h2>
@@ -23,7 +28,10 @@ block content
       input(type="text", name="descricao", value="{{descricao}}")
     p Sal&aacute;rio:
       input(type="text", name="salario", value="{{salario}}")
-    <a href=# class="gravarConcurso">Gravar</a>
+    p
+      <a href=# class="gravarConcurso">Gravar</a>
+    p 
+      <a href=# class="removerConcurso">Remover</a>
     
     
     

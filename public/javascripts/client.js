@@ -1,5 +1,7 @@
 var Concurso = Backbone.Model.extend({
-	idAttribute: "_id"
+	idAttribute: "_id",
+	urlRoot: "/concursos"
+	
 });
 
 var ConcursoCollection = Backbone.Collection.extend({
@@ -8,8 +10,11 @@ var ConcursoCollection = Backbone.Collection.extend({
 }); 
 
 var ConcursoView = Backbone.View.extend({
+	initialize: function() {
+		this.model.bind("destroy", this.close, this);
+	},
 	events: {
-		"click .nomeConcurso": "nomeConcursoLink"
+		"click .nomeConcurso": "nomeConcursoLink"		
 	},
 	tagName: "li",
 	className: "concurso",
@@ -24,7 +29,7 @@ var ConcursoView = Backbone.View.extend({
 		e.preventDefault();
 		var id = this.model.get("_id");
 		router.navigate("concurso/"+ id, {trigger: true}); 
-	}
+	}	
 });
 
 var ExibirConcursoView = Backbone.View.extend({
@@ -40,8 +45,8 @@ var ExibirConcursoView = Backbone.View.extend({
 var EditarConcursoView = Backbone.View.extend({
 	events: {
 		"click .gravarConcurso": "gravarConcursoLink",
-		"change": "change"
-			
+		"click .removerConcurso": "removerConcursoLink",		
+		"change": "change"			
 	},
 	render: function() {		
 		var template = $("#editarConcursoTemplate").html();
@@ -50,14 +55,24 @@ var EditarConcursoView = Backbone.View.extend({
 		this.$el.html(html);		
 		return this;
 	},
-	gravarConcursoLink: function(e){
-		e.preventDefault();
-		var id = this.model.get("_id");		
+	gravarConcursoLink: function(e){		
+		e.preventDefault();			
+			
 		this.model.save(null, {
 			success: function(model){			
+				//router.collection.fetch();
 				window.router.navigate("", {trigger: true});
 			},
-			error: function(model, xhr, options){				
+			error: function(model, xhr, options){		
+				alert('erro na gravação');
+			}
+		});	
+	},
+	removerConcursoLink: function(e) {
+		e.preventDefault();	
+		this.model.destroy({
+			success: function () {
+				window.router.navigate("", {trigger: true});
 			}
 		});
 	},
@@ -71,7 +86,13 @@ var EditarConcursoView = Backbone.View.extend({
 
 var ConcursoCollectionView = Backbone.View.extend({
 	initialize: function() {
+		_.bindAll(this, 'render');
+		this.collection.bind('add', this.render);
+		this.collection.bind('remove', this.render);
 		this.listenTo(this.collection, "reset", this.render);
+	},
+	events: {		
+		"click .addConcurso": "addConcursoLink"
 	},
 	tagName: "ul",
 	className: "concursos",
@@ -81,8 +102,17 @@ var ConcursoCollectionView = Backbone.View.extend({
 			var concursoView = new ConcursoView({model: concurso});
 			this.$el.append(concursoView.render().el);
 		}, this);
+		var template = $("#footerTemplate").html();
+		var compiled = Handlebars.compile(template);
+		var html = compiled();
+		this.$el.append(html);		
+		
 		return this;
-	}
+	},
+	addConcursoLink: function(e){
+		e.preventDefault();
+		window.router.navigate("concurso/add", {trigger: true});		
+	}	
 });
 
 var AppRouter = Backbone.Router.extend({
@@ -90,7 +120,8 @@ var AppRouter = Backbone.Router.extend({
 		this._setupCollection();
 	},
 	routes: {
-		"": "index",
+		"": "index",		
+		"concurso/add": "inserirConcurso",
 		"concurso/:id": "editarConcurso"
 	},
 	_setupCollection: function() {
@@ -113,6 +144,11 @@ var AppRouter = Backbone.Router.extend({
 	},
 	editarConcurso: function(id) {		
 		var concurso = this.collection.get(id);		
+		var view = new EditarConcursoView({model: concurso});		
+		this._renderView(view, ".edicao");
+	},
+	inserirConcurso: function() {
+		var concurso = new Concurso();
 		var view = new EditarConcursoView({model: concurso});		
 		this._renderView(view, ".edicao");
 	}
