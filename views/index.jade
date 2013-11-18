@@ -1,7 +1,6 @@
 extends layout
 
 block content
-  h1= title  
   
   div#initialContent
     = appData
@@ -18,8 +17,13 @@ block content
       
     
   script(id="exibirConcursoTemplate", type="text/x-handlebars")    
-    <h2>Nome do Concurso: {{nome}}</h2>
-    <p>Mais info do concurso</p>    
+    h2 Nome do Concurso: {{nome}}            
+    p Descri&ccedil;&atilde;o: {{descricao}}
+    p Sal&aacute;rio: {{salario}}
+    p
+      <a href=# class="editarConcurso">Editar</a>
+    p 
+      <a href=# class="voltar">Voltar</a>
     
   script(id="editarConcursoTemplate", type="text/x-handlebars")
     p Nome do concurso:
