@@ -1,6 +1,19 @@
-var dbUrl = process.env.MONGOHQ_URL || "agruup";
-var collections = ["concursos"];
+//var dbUrl = process.env.MONGOHQ_URL || "agruup";
+//var collections = ["concursos"];
+//
+//var db = require("mongojs").connect(dbUrl, collections);
+//
+//module.exports = db;
 
-var db = require("mongojs").connect(dbUrl, collections);
+var mysql = require('mysql');
+
+var bancoLocal = {
+		host: 'localhost',
+		user: 'root',
+		password: 'senha',
+		database: 'agruup'		
+	};
+
+var db = mysql.createConnection(process.env.MONGOHQ_URLCLEARDB_DATABASE_URL || bancoLocal); 
 
 module.exports = db;

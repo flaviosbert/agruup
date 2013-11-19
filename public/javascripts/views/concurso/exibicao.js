@@ -12,7 +12,7 @@ define(["backbone","handlebars","jquery","events"], function(Backbone, Handlebar
 		},
 		editarConcursoLink: function(e) {
 			e.preventDefault();
-			var id = this.model.get("_id");
+			var id = this.model.get("id");
 			var url = "concurso/editar/"+ id;
 			Events.trigger("router:navigate", url);
 		}

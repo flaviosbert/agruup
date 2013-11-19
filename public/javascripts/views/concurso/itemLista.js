@@ -17,7 +17,7 @@ define(["backbone","handlebars","jquery","events"], function(Backbone, Handlebar
 		},
 		nomeConcursoLink: function(e) {
 			e.preventDefault();
-			var id = this.model.get("_id");
+			var id = this.model.get("id");
 			var url = "concurso/exibir/"+ id;
 			Events.trigger("router:navigate", url);			 
 		}	
