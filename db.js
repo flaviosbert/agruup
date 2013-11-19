@@ -14,6 +14,6 @@ var bancoLocal = {
 		database: 'agruup'		
 	};
 
-var db = mysql.createConnection(process.env.MONGOHQ_URLCLEARDB_DATABASE_URL || bancoLocal); 
+var db = mysql.createConnection(process.env.CLEARDB_DATABASE_URL || bancoLocal); 
 
 module.exports = db;
