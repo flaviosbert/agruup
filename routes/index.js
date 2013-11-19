@@ -1,6 +1,9 @@
 var db = require("../db.js");
 
 exports.index = function(req, res){
+	res.send(process.env.CLEARDB_DATABASE_URL);
+	return;
+	
 	
 	var stringSQL = "select * from concursos;";
 	db.query(stringSQL, function(err, rows) {
