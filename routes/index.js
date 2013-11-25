@@ -1,28 +1,33 @@
-var db = require("../db.js");
+//var db = require("../db.js");
 
-exports.index = function(req, res){
+exports.index = function(req, res, next){
 	var stringSQL = "select * from concursos;";
-	db.query(stringSQL, function(err, rows) {
-		if (err) {
-			throw err;
-		}
+	
+	req.getConnection(function (err, connection){
+		if (err) return next(err);
 		
-		if (!rows) {
-			res.json("{}");
-		}
-		
-		var ret = [];
-		
-		for (var i=0; i<rows.length; i++) {
-			var row = rows[i];
+		connection.query(stringSQL, function(err, rows) {
+			if (err) {
+				throw err;
+			}
 			
-			var linha = concursoToObj(row);			
-			ret.push(linha);			
-		}		
-		
-		var data = JSON.stringify(ret);		
-		res.render('index', { title: "Lista de Concursos", appData: data });
-		
+			if (!rows) {
+				res.json("{}");
+			}
+			
+			var ret = [];
+			
+			for (var i=0; i<rows.length; i++) {
+				var row = rows[i];
+				
+				var linha = concursoToObj(row);			
+				ret.push(linha);			
+			}		
+			
+			var data = JSON.stringify(ret);		
+			res.render('index', { title: "Lista de Concursos", appData: data });
+			
+		});
 	});
 	
 	

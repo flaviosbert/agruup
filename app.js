@@ -8,7 +8,9 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-//var db = require('./db.js');
+var mysql = require('mysql');
+var myConnection = require('express-myconnection');
+var db = require('./db.js');
 
 var app = express();
 
@@ -20,6 +22,7 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(myConnection(mysql, db, 'single'));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
